@@ -8,4 +8,4 @@ import glassdoor_scraper as gs
 import pandas as pd
 
 path = "C:/Users/ossed/MyDSProjects/Quant_salary_prediction/Quant_salary_prediction/chromedriver"
-df = gs.get_jobs('quantitative analyst',3,False,path,15)
+df = gs.get_jobs('quantitative analyst',1000,False,path,15)
