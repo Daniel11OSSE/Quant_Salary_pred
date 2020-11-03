@@ -9,3 +9,5 @@ import pandas as pd
 
 path = "C:/Users/ossed/MyDSProjects/Quant_salary_prediction/Quant_salary_prediction/chromedriver"
 df = gs.get_jobs('quantitative analyst',1000,False,path,15)
+
+df.to_csv('glassdoor_quants_jobs.csv', index=False)
