@@ -38,19 +38,24 @@ param_grid = [{'kernel' : ["linear"], 'C':[1,10,100,1000]},{'kernel' : ["rbf"], 
 svr_reg = SVR()
 
 grid_svr = GridSearchCV(svr_reg, param_grid, cv=3,scoring = 'neg_mean_squared_error',return_train_score=True)
-
 grid_svr.fit(X_train, y_train)
 
+grid_svr.best_score_
+grid_svr.best_estimator_
+
 # Decision Tree Regressor
+from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 tree_reg = DecisionTreeRegressor()
+tree_reg.fit(X_train, y_train)
 np.mean(cross_val_score(tree_reg, X_train, y_train, scoring = 'neg_mean_absolute_error', cv = 3))
+#-43.635846078711644
 
 # Random forest
-
 from sklearn.ensemble import RandomForestRegressor
 rf = RandomForestRegressor()
 np.mean(cross_val_score(rf, X_train, y_train, scoring = 'neg_mean_absolute_error', cv = 3))
+#-38.921721559144906
 
 # Fine-tuning with Grid Search for RandomForestRegressor
 parameters = {'n_estimators':range(10,300,10), 'criterion':('mse','mae'), 'max_features':('auto','sqrt','log2')}
@@ -59,6 +64,7 @@ gs = GridSearchCV(rf,parameters,scoring='neg_mean_absolute_error',cv=3)
 gs.fit(X_train,y_train)
 
 gs.best_score_
+#-37.182269595495626
 gs.best_estimator_
 
 # test ensembles 
@@ -67,11 +73,11 @@ tpred_tree = tree_reg.predict(X_test)
 tpred_rf = gs.best_estimator_.predict(X_test)
 
 from sklearn.metrics import mean_absolute_error
-mean_absolute_error(y_test,tpred_lm)
-mean_absolute_error(y_test,tpred_tree)
-mean_absolute_error(y_test,tpred_rf)
+mean_absolute_error(y_test,tpred_svr) #32.81817689644238
+mean_absolute_error(y_test,tpred_tree) #44.24610552763819
+mean_absolute_error(y_test,tpred_rf) #36.27610848359445
 
-mean_absolute_error(y_test,(tpred_svr+tpred_rf)/2)
+mean_absolute_error(y_test,(tpred_svr+tpred_rf)/2) #34.39544023465382
 
 
 import pickle
