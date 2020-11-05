@@ -54,8 +54,8 @@ After scraping the data, I had to clean it up so that it would be usable for our
     * Derivatives
     * Trading
     * sql
-*	    Column for simplified job title and Seniority 
-*	    Column for description length
+*	Column for simplified job title and Seniority 
+*	Column for description length
 
 ## EDA
 I looked at the distributions of the data and the value counts for the various categorical variables. Below are a few highlights from the pivot tables. 
