@@ -53,13 +53,35 @@ After scraping the data, I had to clean it up so that it would be usable for our
     * Portfolio_theory
     * Derivatives
     * Trading
-    * sql'
+    * sql
 *	      Column for simplified job title and Seniority 
 *	      Column for description length
 
 ## EDA
 I looked at the distributions of the data and the value counts for the various categorical variables. Below are a few highlights from the pivot tables. 
 
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/salary_by_job_title.PNG "Salary by Position")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/positions_by_state.png "Job Opportunities by State")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/correlation_visual.png "Correlations")
+![alt text](https://github.com/Daniel11OSSE/Quant_Salary_pred/blob/master/different_quant_salary.PNG "Salary by Position")
+![alt text](https://github.com/Daniel11OSSE/Quant_Salary_pred/blob/master/salary_by_state.PNG "Job Opportunities by State")
+![alt text](https://github.com/Daniel11OSSE/Quant_Salary_pred/blob/master/correlation.PNG "Correlations")
+
+## Model Building 
+
+First, I transformed the categorical variables into dummy variables. I also split the data into train and tests sets with a test size of 20%.   
+
+I tried three different models and evaluated them using Mean Absolute Error.    
+
+I tried three different models:
+*	**Support Vector Regression** 
+*	**Decision Tree Regressor** 
+*	**Random Forest**
+
+## Model performance
+The Random Forest model far outperformed the other approaches on the test and validation sets. 
+*	**Support Vector Regression** : MAE = 33
+*	**Decision Tree Regressor**: MAE = 44
+*	**Random Forest**: MAE = 36
+
+## Productionization 
+Now comes the step of building a "flask" type API hosted on a local web server. This task was inspired by the TDS mentioned above. The API takes a query with a list of values from a list of jobs and returns a salary estimate. 
+
+
